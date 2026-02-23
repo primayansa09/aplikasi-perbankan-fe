@@ -244,7 +244,7 @@ export function Transfer() {
               size="small"
               value={formDataTransaction.amount}
               error={errors.amount}
-              helperText={errors.amount || ""}
+              helperText={errorAmount.amount || ""}
               inputProps={{ inputMode: "decimal" }}
               InputProps={{
                 startAdornment: (
