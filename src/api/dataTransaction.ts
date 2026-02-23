@@ -19,3 +19,9 @@ export const getDataTransactionById = (id: string): Promise<DataResponseTransact
     .get<DataResponseTransactionId>(`${transactionAPI.getTransaction}/${id}`)
     .then((response) => response.data);
 };
+
+export const getDataTransactionByIdTest = (id: string): Promise<DataResponseTransactionId> => {
+  return apiClient
+    .get<DataResponseTransactionId>(`${transactionAPI.getTransaction}/${id}`)
+    .then((response) => response.data);
+};
