@@ -159,6 +159,7 @@ export function Transfer() {
               <InputLabel
                 sx={{
                   ...layoutPrivateStyle.manageSubTitle,
+                  textAlign:'start'
                 }}
               >
                 No Rekening
@@ -190,6 +191,7 @@ export function Transfer() {
               <InputLabel
                 sx={{
                   ...layoutPrivateStyle.manageSubTitle,
+                  textAlign: 'start'
                 }}
               >
                 No Rekening Tujuan
@@ -233,6 +235,7 @@ export function Transfer() {
               <InputLabel
                 sx={{
                   ...layoutPrivateStyle.manageSubTitle,
+                  textAlign: 'start',
                 }}
               >
                 Jumlah Uang
@@ -242,6 +245,7 @@ export function Transfer() {
               id="outlined-basic"
               variant="outlined"
               size="small"
+              type="number"
               value={formDataTransaction.amount}
               error={errors.amount}
               helperText={errorAmount.amount || ""}
@@ -274,6 +278,7 @@ export function Transfer() {
               <InputLabel
                 sx={{
                   ...layoutPrivateStyle.manageSubTitle,
+                  textAlign: 'start'
                 }}
               >
                 Deskripsi
@@ -285,6 +290,8 @@ export function Transfer() {
               sx={{ width: "600px" }}
               multiline
               rows={10}
+              error={errors.description}
+              helperText={errors.description ? "Deskripsi harus di isi" : ""}
               InputProps={{
                 sx: {
                   height: 200,
