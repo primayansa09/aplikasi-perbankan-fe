@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState} from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
   Stack,
 } from "@mui/material";
 import { z } from "zod";
-// import logo from "../../assets/Logo_UMKM.png";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { login } from "../../store/auth";

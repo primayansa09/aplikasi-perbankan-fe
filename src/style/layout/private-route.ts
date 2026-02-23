@@ -63,10 +63,10 @@ const manageTableBodyNoBorder: SxStyle = {
   borderRight: 0,
 };
 
-const manageColorTableHead: SxStyle = {
-  color: "#183B4E",
-  fontWeight: "bold",
-};
+// const manageColorTableHead: SxStyle = {
+//   color: "#183B4E",
+//   fontWeight: "bold",
+// };
 
 const manageBoldTitle: SxStyle = {
   textAlign: "center",

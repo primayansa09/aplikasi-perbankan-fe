@@ -8,13 +8,12 @@ import {
   TextField,
   InputLabel,
   Paper,
-  Switch,
 } from "@mui/material";
 import { layoutPrivateStyle } from "../../style/layout/private-route";
 import { DataTransactionPayload } from "../../store/store/type";
 import { createTransaction } from "../../api/dataTransaction";
 import ModalAlert from "../../components/modal/modal";
-import { number, string, z } from "zod";
+import { z } from "zod";
 import { useAppSelector } from "../../store/hooks";
 
 const storeSchema = z.object({
@@ -23,8 +22,6 @@ const storeSchema = z.object({
   amount: z.string().min(1, "Jumlah Uang tidak boleh kosong"),
   description: z.string().min(1, "deskripsi tidak boleh kosong")
 });
-
-const label = { inputProps: { "aria-label": "Color switch demo" } };
 
 export function Transfer() {
   const navigate = useNavigate();
@@ -49,9 +46,6 @@ export function Transfer() {
     description: false,
   });
 
-  //   const [errorAmount, setErrorAmount] = useState<{
-  //   amount?: string;
-  // }>({})
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -61,7 +55,7 @@ export function Transfer() {
 
     if (!result.success) {
       const fieldErrors: any = {};
-      result.error.issues.forEach((err) => {
+      result.error.issues.forEach((err: any) => {
         if (err.path[0] === "sourceAccount") fieldErrors.sourceAccount = true;
         if (err.path[0] === "destinationAccount") fieldErrors.destinationAccount = true;
         if (err.path[0] === "amount") fieldErrors.amount = true;
@@ -284,7 +278,7 @@ export function Transfer() {
                   amount: value,
                 });
 
-                const errorMessage = validateAmount(value);
+                validateAmount(value);
               }}
             />
           </Grid>
