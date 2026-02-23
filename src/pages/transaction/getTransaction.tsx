@@ -12,7 +12,6 @@ import { DataTransactionById } from "../../store/store/type";
 import { getDataTransactionById } from "../../api/dataTransaction";
 import TableComponent from "../../components/table/tableComponent";
 import { useAppSelector } from "../../store/hooks";
-import { GridRenderCellParams, GridColDef } from "@mui/x-data-grid";
 
 export function GetTransaction() {
     const [dataBind, setDataBind] = useState<DataTransactionById[]>([]);
