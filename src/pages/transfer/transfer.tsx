@@ -8,7 +8,6 @@ import {
   TextField,
   InputLabel,
   Paper,
-  Switch,
 } from "@mui/material";
 import { layoutPrivateStyle } from "../../style/layout/private-route";
 import { DataTransactionPayload } from "../../store/store/type";
@@ -49,9 +48,6 @@ export function Transfer() {
     description: false,
   });
 
-  //   const [errorAmount, setErrorAmount] = useState<{
-  //   amount?: string;
-  // }>({})
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
