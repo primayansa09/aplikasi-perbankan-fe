@@ -46,6 +46,10 @@ export function Transfer() {
     description: false,
   });
 
+  const [errorAmount, setErrorAmount] = useState({
+    amount: "",
+  });
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -111,10 +115,10 @@ export function Transfer() {
   }, []);
 
   useEffect(() => {
-    if(sourceAccount){
+    if (sourceAccount) {
       setFormDataTransaction((prev) => ({
         ...prev,
-        sourceAccount: sourceAccount 
+        sourceAccount: sourceAccount
       }));
     }
   }, [sourceAccount])
@@ -155,6 +159,7 @@ export function Transfer() {
               <InputLabel
                 sx={{
                   ...layoutPrivateStyle.manageSubTitle,
+                  textAlign:'start'
                 }}
               >
                 No Rekening
@@ -173,33 +178,12 @@ export function Transfer() {
               InputProps={{
                 readOnly: true
               }}
-              onChange={(e) => 
+              onChange={(e) =>
                 setFormDataTransaction({
                   ...formDataTransaction,
                   sourceAccount: e.target.value
                 })
               }
-              // onChange={(e) => {
-              //   const value = e.target.value;
-
-              //   // Hanya izinkan angka (0–9)
-              //   if (/^\d*$/.test(value)) {
-              //     // Batasi maksimal 13 digit
-              //     if (value.length <= 13) {
-              //       setFormDataTransaction({
-              //         ...formDataTransaction,
-              //         sourceAccount: value,
-              //       });
-
-              //       // Validasi: panjang harus antara 10–13 digit
-              //       if (value.length >= 10 && value.length <= 13) {
-              //         setErrors((prev) => ({ ...prev, sourceAccount: false }));
-              //       } else {
-              //         setErrors((prev) => ({ ...prev, sourceAccount: true }));
-              //       }
-              //     }
-              //   }
-              // }}
             />
           </Grid>
           <Grid direction="column" container xs={6}>
@@ -207,6 +191,7 @@ export function Transfer() {
               <InputLabel
                 sx={{
                   ...layoutPrivateStyle.manageSubTitle,
+                  textAlign: 'start'
                 }}
               >
                 No Rekening Tujuan
@@ -250,6 +235,7 @@ export function Transfer() {
               <InputLabel
                 sx={{
                   ...layoutPrivateStyle.manageSubTitle,
+                  textAlign: 'start',
                 }}
               >
                 Jumlah Uang
@@ -259,9 +245,10 @@ export function Transfer() {
               id="outlined-basic"
               variant="outlined"
               size="small"
+              type="number"
               value={formDataTransaction.amount}
               error={errors.amount}
-              helperText={errors.amount || ""}
+              helperText={errorAmount.amount || ""}
               inputProps={{ inputMode: "decimal" }}
               InputProps={{
                 startAdornment: (
@@ -277,8 +264,12 @@ export function Transfer() {
                   ...formDataTransaction,
                   amount: value,
                 });
+                const errorMessage = validateAmount(value);
 
-                validateAmount(value);
+                setErrorAmount((prev) => ({
+                  ...prev,
+                  amount: errorMessage,
+                }));
               }}
             />
           </Grid>
@@ -287,6 +278,7 @@ export function Transfer() {
               <InputLabel
                 sx={{
                   ...layoutPrivateStyle.manageSubTitle,
+                  textAlign: 'start'
                 }}
               >
                 Deskripsi
@@ -298,6 +290,8 @@ export function Transfer() {
               sx={{ width: "600px" }}
               multiline
               rows={10}
+              error={errors.description}
+              helperText={errors.description ? "Deskripsi harus di isi" : ""}
               InputProps={{
                 sx: {
                   height: 200,
