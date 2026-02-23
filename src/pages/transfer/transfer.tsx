@@ -278,7 +278,7 @@ export function Transfer() {
                   amount: value,
                 });
 
-                // const errorMessage = validateAmount(value);
+                validateAmount(value);
               }}
             />
           </Grid>
