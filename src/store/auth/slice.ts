@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginUser, LoginPayload, LoginResponse } from "../../api/AuthApi";
+import { LoginResponse } from "../../api/AuthApi";
 import apiClient from "../../config/api-client";
 import { loginAPI } from "../../constants/loginApi";
 

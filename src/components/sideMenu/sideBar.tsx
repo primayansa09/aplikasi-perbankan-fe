@@ -103,7 +103,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, setOpen }) => {
     getGreeting = "Selamat Malam";
   }
 
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOpenUserMenu = () => {
     setProfileMenu(true);
   };
 
