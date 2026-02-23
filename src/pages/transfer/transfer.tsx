@@ -46,6 +46,10 @@ export function Transfer() {
     description: false,
   });
 
+  const [errorAmount, setErrorAmount] = useState({
+    amount: "",
+  });
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -111,10 +115,10 @@ export function Transfer() {
   }, []);
 
   useEffect(() => {
-    if(sourceAccount){
+    if (sourceAccount) {
       setFormDataTransaction((prev) => ({
         ...prev,
-        sourceAccount: sourceAccount 
+        sourceAccount: sourceAccount
       }));
     }
   }, [sourceAccount])
@@ -173,33 +177,12 @@ export function Transfer() {
               InputProps={{
                 readOnly: true
               }}
-              onChange={(e) => 
+              onChange={(e) =>
                 setFormDataTransaction({
                   ...formDataTransaction,
                   sourceAccount: e.target.value
                 })
               }
-              // onChange={(e) => {
-              //   const value = e.target.value;
-
-              //   // Hanya izinkan angka (0–9)
-              //   if (/^\d*$/.test(value)) {
-              //     // Batasi maksimal 13 digit
-              //     if (value.length <= 13) {
-              //       setFormDataTransaction({
-              //         ...formDataTransaction,
-              //         sourceAccount: value,
-              //       });
-
-              //       // Validasi: panjang harus antara 10–13 digit
-              //       if (value.length >= 10 && value.length <= 13) {
-              //         setErrors((prev) => ({ ...prev, sourceAccount: false }));
-              //       } else {
-              //         setErrors((prev) => ({ ...prev, sourceAccount: true }));
-              //       }
-              //     }
-              //   }
-              // }}
             />
           </Grid>
           <Grid direction="column" container xs={6}>
@@ -277,8 +260,12 @@ export function Transfer() {
                   ...formDataTransaction,
                   amount: value,
                 });
+                const errorMessage = validateAmount(value);
 
-                validateAmount(value);
+                setErrorAmount((prev) => ({
+                  ...prev,
+                  amount: errorMessage,
+                }));
               }}
             />
           </Grid>
