@@ -180,7 +180,7 @@ export function AddAccount() {
                   value={formDataAccount.email}
                   error={errors.email}
                   helperText={
-                    errors.email ? "Email tidak boleh kosong" : ""
+                    errors.email ? "Format email tidak valid" : ""
                   }
                   onChange={(e) =>
                     setFormDataAccount({
